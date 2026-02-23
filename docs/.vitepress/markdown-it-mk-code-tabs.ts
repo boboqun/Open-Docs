@@ -18,11 +18,11 @@ export default function markdownItMkCodeTabs(md: any) {
         if (top.indent.length >= targetIndentLen) {
           // Close the level
           if (top.type === 'tabs') {
-            newLines.push(`${top.outputIndent}</tabs>`);
+            newLines.push(`\n${top.outputIndent}</tabs>`);
             // Add blank line after closing tabs to ensure subsequent markdown content is parsed correctly
             newLines.push('');
           } else {
-            newLines.push(`${top.outputIndent}</tab>`);
+            newLines.push(`\n${top.outputIndent}</tab>`);
           }
           stack.pop();
         } else {
@@ -105,12 +105,12 @@ export default function markdownItMkCodeTabs(md: any) {
         }
 
         if (!inGroup) {
-          newLines.push(`${outputIndent}<tabs>`);
+          newLines.push(`${outputIndent}<tabs>\n`);
           stack.push({ indent: indent, type: 'tabs', outputIndent: outputIndent });
         }
 
         // Start tab
-        newLines.push(`${outputIndent}<tab title="${title}">`);
+        newLines.push(`${outputIndent}<tab title="${title}">\n`);
         stack.push({ indent: indent, type: 'tab', outputIndent: outputIndent });
 
       } else {
